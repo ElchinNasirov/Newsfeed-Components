@@ -85,6 +85,21 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+  },
+  {
+    title: 'My Own Article',
+    date: 'Feb 18th, 2020',
+    firstParagraph: `Skywalker mon utapau tusken raider darth mustafar fett sebulba zabrak. Bespin boba antilles jabba. Moff maul skywalker darth dooku skywalker skywalker bespin. 
+          Mustafar r2-d2 coruscant vader lars. Moff luke baba mothma luke baba darth jango. Watto gonk wedge sebulba. Mara mace grievous skywalker maul c-3po antilles padmé c-3po. 
+          Dagobah zabrak sidious boba dantooine wedge grievous palpatine. Leia ackbar anakin windu baba antilles. Qui-gon organa boba fisto antilles. Kashyyyk wookiee secura lobot. `,
+
+    secondParagraph: `Darth mace maul darth lando moff. Chewbacca yoda anakin dooku mara hutt calamari. Jabba endor wampa moff mothma. Ben dagobah solo r2-d2 mon. 
+          Lando vader ackbar fisto darth calrissian moff lando. Lando leia mandalorians yoda mon mon thrawn hutt. Kessel darth luke endor. Jade anakin jango grievous amidala leia hutt amidala calrissian. 
+          Mandalorians jabba watto bothan droid mandalore coruscant skywalker organa. Boba moff palpatine luke han sidious secura. Kessel organa darth mara. Fett jar bothan sith skywalker antilles.`,
+
+    thirdParagraph: `Chewbacca jawa calrissian tatooine hutt tatooine organa palpatine grievous. Skywalker coruscant jabba anakin dagobah darth solo. Antilles sidious calamari maul mon organa mon. 
+          Moff darth gonk grievous jar. Darth yoda organa calamari wookiee. Organa darth kessel jinn hutt organa thrawn. Lando jango yoda lando. Grievous bothan bothan mandalorians han calrissian darth. 
+          Boba wampa padmé sebulba grievous jar jabba solo. Hutt solo mustafar darth calrissian greedo padmé ahsoka. Yoda antilles anakin ahsoka hutt organa lando coruscant.`
   }
 ];
 
@@ -112,3 +127,57 @@ const data = [
   Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new article.
 
 */
+
+// Step 1:
+const componentMaker = (title, date, firstParagraph, secondParagraph, thirdParagraph) => {
+
+  // Creating elements: div, h3, p, span
+  const article = document.createElement('div');
+  article.classList.add('article');
+
+  const articleTitle = document.createElement('h3');
+  articleTitle.textContent = title;
+
+  const articleDate = document.createElement('p');
+  articleDate.classList.add('date');
+  articleDate.textContent = date;
+
+  const articleFirstParagraph = document.createElement("p");
+  articleFirstParagraph.textContent = firstParagraph;
+
+  const articleSecondParagraph = document.createElement("p");
+  articleSecondParagraph.textContent = secondParagraph;
+
+  const articleThirdParagraph = document.createElement("p");
+  articleThirdParagraph.textContent = thirdParagraph;
+
+  const expandButton = document.createElement('span');
+  expandButton.classList.add('expandButton');
+  expandButton.textContent = "CLICK";
+
+  // Step 2:
+  expandButton.addEventListener('click', () => {
+    article.classList.toggle('article-open');
+  }); 
+
+  article.appendChild(articleTitle);
+  article.appendChild(articleDate);
+  article.appendChild(articleFirstParagraph);
+  article.appendChild(articleSecondParagraph);
+  article.appendChild(articleThirdParagraph);
+  article.appendChild(expandButton);
+
+  // Step 3:
+  return article;
+}
+
+const articles = document.querySelector('.articles');
+
+// Step 4:
+data.forEach((currentValue) => {
+  const newComponent = componentMaker(currentValue.title, currentValue.date, currentValue.firstParagraph, 
+                                      currentValue.secondParagraph, currentValue.thirdParagraph);
+  articles.appendChild(newComponent);
+})
+
+// Step 5: Added a new article to the array above
